@@ -11,9 +11,9 @@
     joint4_lower_limit:=${-2.0*pi}  joint4_upper_limit:=${2.0*pi}
     joint5_lower_limit:=${-1.69297}  joint5_upper_limit:=${pi}
     joint6_lower_limit:=${-2.0*pi}  joint6_upper_limit:=${2.0*pi}">
-    <ros2_control name="${prefix}${ros2_control_plugin}" type="system">
+    <ros2_control name="my_robot_system" type="system">
       <hardware>
-        <plugin>${ros2_control_plugin}</plugin>
+        <!-- <plugin>${ros2_control_plugin}</plugin>
         <xacro:if value="${ros2_control_plugin == 'uf_robot_hardware/UFRobotSystemHardware'}">
           <param name="hw_ns">${prefix}${hw_ns}</param>
           <param name="velocity_control">${velocity_control}</param>
@@ -26,7 +26,18 @@
           <param name="robot_type">xarm</param>
           <param name="add_gripper">${add_gripper}</param>
           <param name="add_bio_gripper">${add_bio_gripper}</param>
-        </xacro:if>
+        </xacro:if> -->
+
+        <!-- <xacro:if value="${ros2_control_plugin == 'topic_based_ros2_control/TopicBasedSystem'}">
+          <param name="joint_commands_topic">/isaac_joint_commands</param>
+          <param name="joint_states_topic">/isaac_joint_states</param>
+        </xacro:if> -->
+
+        <plugin>topic_based_ros2_control/TopicBasedSystem</plugin>
+        <param name="joint_commands_topic">/isaac_joint_commands</param>
+        <param name="joint_states_topic">/isaac_joint_states</param>
+
+
         <!-- fake -->
         <!-- <plugin>fake_components/GenericSystem</plugin> -->
 

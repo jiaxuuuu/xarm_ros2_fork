@@ -46,6 +46,7 @@ find_package(controller_manager_msgs REQUIRED)
 find_package(xarm_msgs REQUIRED)
 find_package(xarm_api REQUIRED)
 find_package(xarm_sdk REQUIRED)
+find_package(topic_based_ros2_control REQUIRED)
 
 add_library(
   uf_robot_hardware
@@ -86,6 +87,7 @@ target_link_libraries(uf_robot_hardware
 )
 
 pluginlib_export_plugin_description_file(hardware_interface uf_hardware_interface_plugins.xml)
+
 
 install(
   DIRECTORY include/

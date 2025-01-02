@@ -56,7 +56,9 @@ def launch_setup(context, *args, **kwargs):
     no_gui_ctrl = LaunchConfiguration('no_gui_ctrl', default=False)
     ros_namespace = LaunchConfiguration('ros_namespace', default='').perform(context)
 
-    ros2_control_plugin = 'uf_robot_hardware/UFRobotFakeSystemHardware'
+    # ros2_control_plugin = 'uf_robot_hardware/UFRobotFakeSystemHardware'
+    ros2_control_plugin = 'topic_based_ros2_control/TopicBasedSystem'
+    
     controllers_name = 'fake_controllers'
     xarm_type = '{}{}'.format(robot_type.perform(context), dof.perform(context) if robot_type.perform(context) in ('xarm', 'lite') else '')
 
